@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class Graph<T> {
 
-    boolean isDirected;
-    List<Edge<T>> allEdges;
-    Map<Long, Vertex<T>> allVertex;
+    private boolean isDirected;
+    private List<Edge<T>> allEdges;
+    private Map<Long, Vertex<T>> allVertex;
 
     public Graph () {
         this(false);
@@ -36,6 +36,18 @@ public class Graph<T> {
         }
     }
 
+    public boolean isDirected() {
+        return isDirected;
+    }
+
+    public List<Edge<T>> getAllEdges() {
+        return allEdges;
+    }
+
+    public Map<Long, Vertex<T>> getAllVertex() {
+        return allVertex;
+    }
+    
     private Vertex<T> createOrGet(long id) {
 
         if(!allVertex.containsKey(id)) {
