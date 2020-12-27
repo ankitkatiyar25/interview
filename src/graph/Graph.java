@@ -21,7 +21,10 @@ public class Graph<T> {
         this.allVertex = new HashMap<>();
     }
 
-    public void addEdge(long id1, long id2, boolean isDirected, long weight) {
+    public void addEdge(long id1, long id2) {
+        addEdge(id1,id2,1);
+    }
+    public void addEdge(long id1, long id2, long weight) {
         Vertex<T> v1 = createOrGet(id1);
         Vertex<T> v2 = createOrGet(id2);
 
@@ -47,7 +50,7 @@ public class Graph<T> {
     public Map<Long, Vertex<T>> getAllVertex() {
         return allVertex;
     }
-    
+
     private Vertex<T> createOrGet(long id) {
 
         if(!allVertex.containsKey(id)) {
@@ -68,7 +71,7 @@ class Vertex<T> {
     private List<Vertex<T>> adjVertex;
     private int inDegree;
 
-    public Vertex(long id1) {
+    public Vertex(long id) {
         this.id = id;
         this.edges = new ArrayList<>();
         this.adjVertex =  new ArrayList<>();
@@ -90,6 +93,30 @@ class Vertex<T> {
     public void increaseInDegree(int increment) {
         this.inDegree += increment;
     }
+
+    public int getDegree() {
+        return edges.size();
+    }
+
+    public int getInDegree() {
+        return this.inDegree;
+    }
+
+    public long getId() {
+        return this.id;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public List<Edge<T>> getEdges() {
+        return edges;
+    }
+
+    public List<Vertex<T>> getAdjVertex() {
+        return adjVertex;
+    }
 }
 
 class Edge<T> {
@@ -107,5 +134,21 @@ class Edge<T> {
         this.toVertex = v2;
         this.isDirected = isDirected;
         this.weight = weight;
+    }
+
+    public boolean isDirected() {
+        return isDirected;
+    }
+
+    public long getWeight() {
+        return weight;
+    }
+
+    public Vertex<T> getFromVertex() {
+        return fromVertex;
+    }
+
+    public Vertex<T> getToVertex() {
+        return toVertex;
     }
 }

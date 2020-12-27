@@ -5,28 +5,28 @@ import java.util.Map;
 
 public class DisjointSet {
 
-    Map<Integer, Node> map = new HashMap<>();
+    Map<Long, Node> map = new HashMap<>();
 
     class Node {
-        int val;
+        long val;
         int rank;
         Node parent;
 
-        public Node(int val) {
+        public Node(long val) {
             this.val = val;
             this.rank = 0;
             this.parent = this;
         }
     }
 
-    public void makeSet(int i) {
+    public void makeSet(long i) {
 
             Node n = new Node(i);
             map.put(i, n);
 
     }
 
-    public Node findSet(int i) {
+    public Node findSet(long i) {
 
         if(! map.containsKey(i)) return null;
 
@@ -39,7 +39,7 @@ public class DisjointSet {
 
     }
 
-    public void union (int i, int j) {
+    public void union (long i, long j) {
         Node ni = findSet(i);
         Node nj = findSet(j);
         if(ni != nj) {
